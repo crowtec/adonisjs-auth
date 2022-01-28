@@ -97,7 +97,7 @@
     "anyBranch": false
   },
   "dependencies": {
-    "@poppinss/hooks": "^3.0.5",
+    "@poppinss/hooks": "^5.0.0",
     "@poppinss/utils": "^3.2.0",
     "luxon": "^2.0.2"
   },
