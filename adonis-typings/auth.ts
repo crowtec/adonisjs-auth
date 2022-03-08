@@ -521,6 +521,40 @@ declare module '@ioc:Adonis/Addons/Auth' {
     provider: ProvidersList[Provider]['config']
   }
 
+
+    /*
+  |--------------------------------------------------------------------------
+  | Cognito Guard
+  |--------------------------------------------------------------------------
+  */
+
+  /**
+   * Shape of data emitted by the authenticate event
+   */
+   export type CognitoAuthenticateEventData<Provider extends keyof ProvidersList> = {
+    name: string
+    user: GetProviderRealUser<Provider>
+    ctx: HttpContextContract
+  }
+
+  /**
+   * Shape of the basic auth guard
+   */
+  export interface CognitoGuardContract<
+    Provider extends keyof ProvidersList,
+    Name extends keyof GuardsList
+  > extends Omit<GuardContract<Provider, Name>, 'attempt' | 'login' | 'loginViaId' | 'logout'> {}
+
+  /**
+   * Shape of basic auth guard config.
+   */
+  export type CognitoGuardConfig<Provider extends keyof ProvidersList> = {
+    driver: 'cognito'
+    realm?: string
+    provider: ProvidersList[Provider]['config']
+  }
+
+
   /*
   |--------------------------------------------------------------------------
   | OAT Token Guard

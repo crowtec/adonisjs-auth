@@ -22,6 +22,15 @@ export const config: AuthConfig = {
         uids: ['email'],
       },
     },
+    cognito: {
+      driver: 'cognito',
+      provider: {
+        driver: 'lucid',
+        model: async () => User,
+        identifierKey: 'id',
+        uids: ['email'],
+      },
+    },
     api: {
       driver: 'oat',
       tokenProvider: {

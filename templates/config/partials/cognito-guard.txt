@@ -1,0 +1,19 @@
+    /*
+    |--------------------------------------------------------------------------
+    | Cognito Guard
+    |--------------------------------------------------------------------------
+    |
+    | Uses Cognito auth to authenticate an HTTP request. There is no concept of
+    | "login" and "logout" with cognito auth. You just authenticate the requests
+    | using a middleware and browser will prompt the user to enter their login
+    | details
+    |
+    */
+    cognito: {
+      driver: 'cognito',
+      realm: 'Login',
+
+      provider: {
+  {{> provider}}
+      },
+    },

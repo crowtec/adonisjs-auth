@@ -18,6 +18,7 @@ import {
   AuthManagerContract,
   ExtendGuardCallback,
   BasicAuthGuardConfig,
+  CognitoGuardConfig,
   UserProviderContract,
   DatabaseProviderConfig,
   ExtendProviderCallback,
@@ -156,6 +157,20 @@ export class AuthManager implements AuthManagerContract {
     return new BasicAuthGuard(mapping, config, this.getEmitter(), provider, ctx)
   }
 
+    /**
+   * Returns an instance of the basic auth guard
+   */
+     private makeCognitoGuard(
+      mapping: string,
+      config: CognitoGuardConfig<any>,
+      provider: UserProviderContract<any>,
+      ctx: HttpContextContract
+    ) {
+      const { CognitoGuard } = require('../Guards/Cognito')
+      return new CognitoGuard(mapping, config, this.getEmitter(), provider, ctx)
+    }
+  
+
   /**
    * Returns an instance of the extended guard
    */
@@ -232,6 +247,8 @@ export class AuthManager implements AuthManagerContract {
         return this.makeOatGuard(mapping, mappingConfig, provider, ctx)
       case 'basic':
         return this.makeBasicAuthGuard(mapping, mappingConfig, provider, ctx)
+      case 'cognito':
+        return this.makeCognitoGuard(mapping, mappingConfig, provider, ctx)
       default:
         return this.makeExtendedGuard(mapping, mappingConfig, provider, ctx)
     }

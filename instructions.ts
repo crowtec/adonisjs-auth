@@ -25,12 +25,13 @@ type InstructionsState = {
 
   provider: 'lucid' | 'database'
   tokensProvider: 'database' | 'redis'
-  guards: ('web' | 'api' | 'basic')[]
+  guards: ('web' | 'api' | 'basic' | 'cognito')[]
 
   hasGuard: {
     web: boolean
     api: boolean
     basic: boolean
+    cognito: boolean
   }
 }
 
@@ -81,6 +82,11 @@ const GUARD_PROMPT_CHOICES = [
     name: 'basic' as const,
     message: 'Basic Auth',
     hint: ' (Uses HTTP Basic auth for authenticating requests)',
+  },
+  {
+    name: 'cognito' as const,
+    message: 'Cognito Auth',
+    hint: ' (Uses Cognito auth for authenticating requests)',
   },
 ]
 

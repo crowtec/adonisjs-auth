@@ -29,6 +29,10 @@ declare module '@ioc:Adonis/Addons/Auth' {
       implementation: BasicAuthGuardContract<'lucid', 'basic'>
       config: BasicAuthGuardConfig<'lucid'>
     }
+    cognito: {
+      implementation: CognitoGuardContract<'lucid', 'cognito'>
+      config: CognitoGuardConfig<'lucid'>
+    }
   }
 }
 
